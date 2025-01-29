@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_cotacao
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: cotacao_db
+      MYSQL_USER: cotacao_user
+      MYSQL_PASSWORD: cotacao_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - cotacao-network
+    restart: always
+volumes:
+  mysql-data:
+
+networks:
+  cotacao-network:
+    driver: bridge
